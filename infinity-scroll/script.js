@@ -12,8 +12,8 @@ let photosArray = [];
 let numOfImagesToLoad = 5; 
 // "OAuth error: The access token is invalid
 const apiKey = 'liCuicj8pL2vNqsquho1YZzrDPGCQhXKa09ViDLdfBc'; 
-const secretKey = 'iLHwJhVRGJaLamRiKHisRrhTVVjNhpRn9nOEoT6HHM4';
-const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}`
+// const secretKey = 'iLHwJhVRGJaLamRiKHisRrhTVVjNhpRn9nOEoT6HHM4';
+const apiUrl = `https://api.unsplash.com/photos/random/?client_id=${apiKey}&count=${numOfImagesToLoad}`
 // check if all images were loaded
 function imageLoaded() {
     imagesLoaded++;
@@ -65,7 +65,7 @@ function displayPhotos() {
 // GET PHOTOS FROM UNSPLASH API
 async function getPhotos() {
     try {
-        const response = await fetch('https://api.unsplash.com/photos/?client_id=liCuicj8pL2vNqsquho1YZzrDPGCQhXKa09ViDLdfBc');
+        const response = await fetch(apiUrl);
         photosArray = await response.json(); 
         displayPhotos(); 
     } catch (err) {
