@@ -14,37 +14,46 @@ function imageMode(color) {
 }
 
 // Dark Mode Styles 
-function darkMode() {
-    document.documentElement.setAttribute('data-theme', 'dark')
-    nav.style.backgroundColor = 'rgb(255 255 255 / 50%)';
-    textBox.style.backgroundColor = 'rgb(0 0 0 / 50%)';
-    toggleIcon.children[0].textContent = 'Dark Mode';
-    // toggleIcon.children[1].classList.remove('fa-sun');
-    // toggleIcon.children[1].classList.add('fa-moon');
-    toggleIcon.children[1].classList.replace('fa-sun', 'fa-moon');
-    // image1.src = 'img/undraw_proud_coder_dark.svg';
-    // image2.src = 'img/undraw_feeling_proud_dark.svg';
-    // image3.src = 'img/undraw_conceptual_idea_dark.svg';
-    imageMode('dark'); 
-    localStorage.setItem('theme', 'dark'); 
+// function darkMode() {
+//     document.documentElement.setAttribute('data-theme', 'dark')
+//     nav.style.backgroundColor = 'rgb(255 255 255 / 50%)';
+//     textBox.style.backgroundColor = 'rgb(0 0 0 / 50%)';
+//     toggleIcon.children[0].textContent = 'Dark Mode';
+//     // toggleIcon.children[1].classList.remove('fa-sun');
+//     // toggleIcon.children[1].classList.add('fa-moon');
+//     toggleIcon.children[1].classList.replace('fa-sun', 'fa-moon');
+//     // image1.src = 'img/undraw_proud_coder_dark.svg';
+//     // image2.src = 'img/undraw_feeling_proud_dark.svg';
+//     // image3.src = 'img/undraw_conceptual_idea_dark.svg';
+//     imageMode('dark'); 
+//     localStorage.setItem('theme', 'dark'); 
+// }
+
+// // Light Mode Styles 
+// function lightMode() {
+//     document.documentElement.setAttribute('data-theme', 'light')
+//     nav.style.backgroundColor = 'rgb(0 0 0 / 50%)';
+//     textBox.style.backgroundColor = 'rgb(255 255 255 / 50%)';
+//     toggleIcon.children[0].textContent = 'Light Mode';
+//     toggleIcon.children[1].classList.replace('fa-moon', 'fa-sun');
+//     imageMode('light'); 
+//     localStorage.setItem('theme', 'light');
+// } 
+// Set function to toglle light and dark modes
+function toggleDarkLightMode(isDark) {
+    isDark ? document.documentElement.setAttribute('data-theme', 'dark') : document.documentElement.setAttribute('data-theme', 'light')
+    nav.style.backgroundColor = isDark ? 'rgb(0 0 0 / 50%)': 'rgb(255 255 255 / 50%)';
+    textBox.style.backgroundColor = isDark ? 'rgb(255 255 255 / 50%)' : 'rgb(0 0 0 / 50%)';
+    toggleIcon.children[0].textContent = isDark? 'Dark Mode' : 'Light Mode';
+    isDark ? toggleIcon.children[1].classList.replace('fa-moon', 'fa-sun') : toggleIcon.children[1].classList.replace('fa-moon', 'fa-sun');
+    isDark ? imageMode('dark') : imageMode('light'); 
+    isDark ? localStorage.setItem('theme', 'dark') : localStorage.setItem('theme', 'light');
 }
-
-// Light Mode Styles 
-function lightMode() {
-    document.documentElement.setAttribute('data-theme', 'light')
-    nav.style.backgroundColor = 'rgb(0 0 0 / 50%)';
-    textBox.style.backgroundColor = 'rgb(255 255 255 / 50%)';
-    toggleIcon.children[0].textContent = 'Light Mode';
-    toggleIcon.children[1].classList.replace('fa-moon', 'fa-sun');
-    imageMode('light'); 
-    localStorage.setItem('theme', 'light');
-} 
-
 // Switch Theme Dynamically
 function switchTheme(event) {
     // document.documentElement lets you get the root at highest level of document
     // Ternary operator to switch from dark to light.
-    event.target.checked ? darkMode(): lightMode()
+    event.target.checked ? toggleDarkLightMode(true): toggleDarkLightMode(false)
 }
 // Event Listener
 toggleSwitch.addEventListener('change', switchTheme);
@@ -56,6 +65,6 @@ if (currentTheme) {
 
     if (currentTheme === 'dark') {
         toggleSwitch.checked = true;
-        darkMode();
+        toggleDarkLightMode(true);
     }
 }
