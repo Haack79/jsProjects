@@ -56,6 +56,14 @@ function pauseSong() {
 playBtn.addEventListener('click', () => (isPlaying ? pauseSong() : playSong())); 
 
 // Update DOM
+    /* two ways, see textContnt and innerText
+    go to Performance tab in dev tools and click paint flashing
+    reflow shows what gets changed or redone. 
+    innerText reflows cause it tries to load the styling for css
+    textContent doesn't do a reflow - can ignore if data stays the same 
+    if artist is the same don't reflow it 
+    performance measurement
+    */
 function loadSong(song) {
     title.textContent = song.displayName;
     artist.textContent = song.artist;
@@ -111,8 +119,18 @@ function updateProgressBar(e) {
         currentTimeEl.textContent = `${currentMinutes}:${currentSeconds}`;
     }
 }
+// Set Progress Bar 
+function setProgressBar(e) {
+    const width = this.clientWidth;
+    const clickX = e.offsetX;
+    const {duration} = music;
+    music.currentTime = (clickX / width) * duration;
+
+}
 
 // Event Listener
 prevBtn.addEventListener('click', prevSong); 
 nextBtn.addEventListener('click', nextSong); 
+music.addEventListener('ended', nextSong);
 music.addEventListener('timeupdate', updateProgressBar); 
+progressContainer.addEventListener('click', setProgressBar);
