@@ -15,6 +15,7 @@ let countdownTitle = '';
 let countdownDate = '';
 let countdownValue = Date;
 let countdownActive; 
+let savedCountdown; 
 
 const second = 1000;
 const minute = second * 60;
@@ -62,6 +63,12 @@ function updateCountdown(evt) {
     evt.preventDefault();
     countdownTitle = evt.srcElement[0].value;
     countdownDate = evt.srcElement[1].value; 
+    savedCountdown = {
+        title: countdownTitle,
+        date: countdownDate,
+    };
+    // when save to web it can only be sent a string so use json
+    localStorage.setItem('countdown', JSON.stringify(savedCountdown));
     // Get number version of current Date,  updateDOM
     countdownValue = new Date(countdownDate).getTime(); 
     updateDOM();
@@ -77,8 +84,22 @@ function reset() {
     // Reset values
     countdownTitle = '';
     countdownDate = '';
+    localStorage.removeItem('countdown'); 
+}
+function restorePreviousCountdown() {
+    // get countdown from local storage if exists
+    if (localStorage.getItem('countdown')) {
+        inputContainer.hidden = true;
+        savedCountdown = JSON.parse(localStorage);
+        countdownTitle = savedCountdown.title;
+        countdownDate = savedCountdown.date;
+        countdownValue = new Date(countdownDate).getTime();
+        updateDOM();
+    }
 }
 // Event Listeners
 countdownForm.addEventListener('submit', updateCountdown);
 countdownBtn.addEventListener('click', reset); 
 completeBtn.addEventListener('click', reset); 
+// On Load, check local storage
+restorePreviousCountdown(); 
