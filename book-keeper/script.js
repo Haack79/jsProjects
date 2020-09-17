@@ -38,6 +38,8 @@ function validate(nameValue, urlValue) {
 }
 // Build bookmarks
 function buildBookmarks() {
+    // Remove all bookmarks
+    bookmarksContainer.textContent = '';
     // build items
     bookmarks.forEach((bookmark) => {
         const {name, url } = bookmark;
@@ -83,6 +85,17 @@ function fetchBookmarks() {
         localStorage.setItem('bookmarks', JSON.stringify(bookmarks))
     }
     buildBookmarks();
+}
+// Delete Bookmar
+function deleteBookmark(url) {
+    bookmarks.forEach((bookmark, i) => {
+        if (bookmark.url === url) {
+            bookmarks.splice(i, 1)
+        }
+    });
+    // Update bookmarks array  in local storage and repop dom
+    localStorage.setItem('bookmarks', JSON.stringify(bookmarks));
+    fetchBookmarks();
 }
 // Handle data from form
 function storeBookmark(evt) {
