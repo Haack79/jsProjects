@@ -7,7 +7,7 @@ const websiteUrlEl = document.getElementById('website-url');
 const bookmarksContainer = document.getElementById('bookmarks-container');
 
 let bookmarks = [];
-
+// let bookmarks = {};
 // Show Modal, focus on Input 
 function showModal() {
     modal.classList.add('show-modal');
@@ -42,6 +42,7 @@ function buildBookmarks() {
     bookmarksContainer.textContent = '';
     // build items
     bookmarks.forEach((bookmark) => {
+    // Object.keys(bookmarks).forEach((id)) => {}
         const {name, url } = bookmark;
         // Item
         const item = document.createElement('div');
@@ -76,6 +77,14 @@ function fetchBookmarks() {
         bookmarks = JSON.parse(localStorage('bookmarks'));
     } else {
         // Create bookmarks
+
+    // object way 
+        /* const id = 'httt://somewebsite'
+        bookmarks[id] = {
+            name: 'jacinto design',
+            url: 'http://somewebsite'
+        }
+        */
         bookmarks = [
             {
                 name: 'jacinto design',
@@ -87,6 +96,13 @@ function fetchBookmarks() {
     buildBookmarks();
 }
 // Delete Bookmar
+// object way 
+/*function deleteBookmark(id) {
+    if (bookmarks[id]) {
+        delete bookmarks[id];
+    }
+}
+*/ // this is data structure choice and is the better one. 
 function deleteBookmark(url) {
     bookmarks.forEach((bookmark, i) => {
         if (bookmark.url === url) {
