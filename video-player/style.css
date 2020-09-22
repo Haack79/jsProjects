@@ -177,11 +177,15 @@ video {
 .speed {
   margin-right: 15px;
 }
-
-
+select, option {
+  cursor: pointer
+}
+select:focus {
+  outline: none;
+}
 
 select {
-
+  background: transparent;
   color: var(--font-color);
   border: none;
   font-size: 18px;
