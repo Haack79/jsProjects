@@ -8,6 +8,8 @@ const volumeBar = document.querySelector('.volume-bar');
 const currentTime = document.querySelector('.time-elapsed');
 const duration = document.querySelector('.time-duration');
 const fullScreenBtn = document.querySelector('.fullscreen');
+const speed = document.querySelector('.player-speed');
+const player = document.querySelector('.player');
 // Play & Pause ----------------------------------- //
  // first look at docs for it online. methods for vid play
 
@@ -95,11 +97,49 @@ function toggleMute() {
 
 
 // Change Playback Speed -------------------- //
+function changeSpeed() {
+    video.playbackRate = speed.value;
+}
 
 
-
-// Fullscreen ------------------------------- //
-
+// Fullscreen ------------------------------- // make sure to account for browser
+/* View in fullscreen */
+function openFullscreen(elem) {
+    if (elem.requestFullscreen) {
+      elem.requestFullscreen();
+    } else if (elem.mozRequestFullScreen) { /* Firefox */
+      elem.mozRequestFullScreen();
+    } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+      elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE/Edge */
+      elem.msRequestFullscreen();
+    }
+    video.classList.add('video-fullscreen');
+  }
+  
+  /* Close fullscreen */
+  function closeFullscreen() {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) { /* Firefox */
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) { /* IE/Edge */
+      document.msExitFullscreen();
+    }
+    video.classList.remove('video-fullscreen');
+  }
+let fullscreen = false;
+// Toggle Fullscreen
+function toggleFullscreen() {
+    if (!fullscreen) {
+        openFullscreen(player);
+    } else {
+        closeFullscreen();
+    }
+    fullscreen = !fullscreen;
+}
 
 // EVENT LISTENERS ----------------------------//
 playBtn.addEventListener('click', togglePlay);
@@ -109,3 +149,5 @@ video.addEventListener('canplay', updateProgress);
 progressRange.addEventListener('click', setProgress);
 volumeRange.addEventListener('click', changeVolume); 
 volumeIcon.addEventListener('click', toggleMute);
+speed.addEventListener('change', changeSpeed);
+fullScreenBtn.addEventListener('click', toggleFullscreen); 
