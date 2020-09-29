@@ -16,19 +16,32 @@
             <!-- Full Name -->
             <div class="form-group">
                 <label for="name">Full Name</label>
-                <input type="text" id="name" placeholder="Full Name" required minlength="2" maxlength="100">
+                <input 
+                    type="text" 
+                    id="name" 
+                    placeholder="Full Name" 
+                    required minlength="2" 
+                    maxlength="100"
+                    name="name"
+                >
             </div>
             <div class="form-group">
                 <label for="phone">Phone Number</label>
-                <input type="tel" id="phone" placeholder="555-555-5555" required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+                <input 
+                    type="tel" 
+                    id="phone" 
+                    placeholder="555-555-5555" 
+                    required pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+                    name="phone"
+                >
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" id="email" placeholder="email@address.com" required>
+                <input type="email" id="email" placeholder="email@address.com" name="email" required>
             </div>
             <div class="form-group">
                 <label for="website">WebSite url</label>
-                <input type="url" id="website" placeholder="google.com" required>
+                <input type="url" id="website" placeholder="google.com" name="website" required>
             </div>    
             <!-- Password -->
             <div class="form-group">
@@ -43,6 +56,7 @@
                     placeholder="confirm password" 
                     required pattern="/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/"
                     title="Please include 1 upper case, 1 lower case and 1 number"
+                    name="password"
                 >
             </div> 
             <button type="submit">Register</button>
