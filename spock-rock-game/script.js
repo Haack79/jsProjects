@@ -3,7 +3,6 @@ const playerScoreEl = document.getElementById('playerScore');
 const playerChoiceEl = document.getElementById('playerChoice');
 const computerScoreEl = document.getElementById('computerScore');
 const computerChoiceEl = document.getElementById('computerChoice');
-const resultText = document.getElementById('resultText');
 
 const playerRock = document.getElementById('playerRock');
 const playerPaper = document.getElementById('playerPaper');
@@ -18,6 +17,7 @@ const computerLizard = document.getElementById('computerLizard');
 const computerSpock = document.getElementById('computerSpock');
 
 const allGameIcons = document.querySelectorAll('.far');
+const resultText = document.getElementById('resultText');
 
 const choices = {
   rock: { name: 'Rock', defeats: ['scissors', 'lizard'] },
@@ -74,19 +74,19 @@ function displayComputerChoice() {
       computerChoiceEl.textContent = ' --- Rock';
       break;
     case 'paper':
-      computerRock.classList.add('selected');
+      computerPaper.classList.add('selected');
       computerChoiceEl.textContent = ' --- Paper';
       break;
     case 'scissors':
-      computerRock.classList.add('selected');
+      computerScissors.classList.add('selected');
       computerChoiceEl.textContent = ' --- Scissors';
       break;
     case 'lizard':
-      computerRock.classList.add('selected');
+      computerLizard.classList.add('selected');
       computerChoiceEl.textContent = ' --- Lizard';
       break;
     case 'spock':
-      computerRock.classList.add('selected');
+      computerSpock.classList.add('selected');
       computerChoiceEl.textContent = ' --- Spock';
       break;
     default:
@@ -100,10 +100,13 @@ function updateScore(playerChoice) {
   } else {
     const choice = choices[playerChoice];
     if (choice.defeats.indexOf(computerChoice) > -1) {
-      startConfetti();
-      resultText.textContent = "You Won!";
-      playerScoreNumber++;
-      playerScoreEl.textContent = playerScoreNumber;
+      import('./confetti.js')
+        .then((module) => {
+          module.startConfetti();
+          resultText.textContent = "You Won!";
+          playerScoreNumber++;
+          playerScoreEl.textContent = playerScoreNumber;
+        });
     } else {
       resultText.textContent = "You Lost!";
       computerScoreNumber++;
@@ -129,19 +132,19 @@ function select(playerChoice) {
       playerChoiceEl.textContent = ' --- Rock';
       break;
     case 'paper':
-      playerRock.classList.add('selected');
+      playerPaper.classList.add('selected');
       playerChoiceEl.textContent = ' --- Paper';
       break;
     case 'scissors':
-      playerRock.classList.add('selected');
+      playerScissors.classList.add('selected');
       playerChoiceEl.textContent = ' --- Scissors';
       break;
     case 'lizard':
-      playerRock.classList.add('selected');
+      playerLizard.classList.add('selected');
       playerChoiceEl.textContent = ' --- Lizard';
       break;
     case 'spock':
-      playerRock.classList.add('selected');
+      playerSpock.classList.add('selected');
       playerChoiceEl.textContent = ' --- Spock';
       break;
     default:
