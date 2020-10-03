@@ -84,9 +84,9 @@ function updateScore(playerChoice) {
   if (playerChoice === computerChoice) {
     resultText.textContent = "Its a tie!!";
   } else {
-    const choice = choices[playerChocie];
+    const choice = choices[playerChoice];
     if (choice.defeats.indexOf(computerChoice) > -1) {
-      resultText.textContent = "Hurray You Won!";
+      resultText.textContent = "You Won!";
       playerScoreNumber++;
       playerScoreEl.textContent = playerScoreNumber;
     } else {
@@ -98,7 +98,7 @@ function updateScore(playerChoice) {
 }
 
 // Call functions to process turn
-function checkResult(playerChoice) {
+function checkResults(playerChoice) {
   resetSelected();
   computerRandomChoice();
   displayComputerChoice();
@@ -106,7 +106,7 @@ function checkResult(playerChoice) {
 }
 //Passing player selection values 
 function select(playerChoice) {
-  checkReulst(playerChoice);
+  checkResults(playerChoice);
   // Add 'selected' styling & playerchoice
   switch (playerChoice) {
     case 'rock':
