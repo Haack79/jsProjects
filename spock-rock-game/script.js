@@ -49,6 +49,7 @@ function resetAll() {
   resultText.textContent = '';
   resetSelected();
 }
+window.resetAll = resetAll;
 // Random computer choice
 function computerRandomChoice() {
   const computerChoiceNumber = Math.random();
@@ -147,5 +148,6 @@ function select(playerChoice) {
       break;
   }
 }
+window.select = select; 
 // set initial values on start up
 resetAll();
