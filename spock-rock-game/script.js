@@ -81,7 +81,20 @@ function displayComputerChoice() {
 }
 // check result, increase score , update results
 function updateScore(playerChoice) {
-  
+  if (playerChoice === computerChoice) {
+    resultText.textContent = "Its a tie!!";
+  } else {
+    const choice = choices[playerChocie];
+    if (choice.defeats.indexOf(computerChoice) > -1) {
+      resultText.textContent = "Hurray You Won!";
+      playerScoreNumber++;
+      playerScoreEl.textContent = playerScoreNumber;
+    } else {
+      resultText.textContent = "You Lost!";
+      computerScoreNumber++;
+      computerScoreEl.textContent = computerScoreNumber;
+    }
+  }
 }
 
 // Call functions to process turn
