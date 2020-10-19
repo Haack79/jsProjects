@@ -42,7 +42,11 @@
                 </span>
                 <!-- Progress Content -->
                 <div id="progress-content" class="custom-scroll">
-                    <ul class="drag-item-list" id="progress-list" ondrop="drop(event)" ondrag="drag(event)" ondragenter="dragEnter(1)">
+                    <ul class="drag-item-list" 
+                        id="progress-list" 
+                        ondrop="drop(event)" 
+                        ondragover="allowDrop(event)" 
+                        ondragenter="dragEnter(1)">
                         <li class="drag-item">Testing</li>
                     </ul>
                 </div>
@@ -67,7 +71,11 @@
                 </span>
                 <!-- Completelog Content -->
                 <div id="complete-content" class="custom-scroll">
-                    <ul class="drag-item-list" id="complete-list" ondrop="drop(event)" ondrag="drag(event)" ondragenter="dragEnter(2)"> 
+                    <ul class="drag-item-list" 
+                        id="complete-list" 
+                        ondrop="drop(event)" 
+                        ondragover="allowDrop(event)" 
+                        ondragenter="dragEnter(2)"> 
                     </ul>
                 </div>
                 <!-- Add button group -->
@@ -91,7 +99,11 @@
                 </span>
                 <!-- On Hold Content -->
                 <div id="on-hold-content" class="custom-scroll">
-                    <ul class="drag-item-list" id="on-hold-list" ondrop="drop(event)" ondrag="drag(event)" ondragenter="dragEnter(3)">
+                    <ul class="drag-item-list" 
+                        id="on-hold-list" 
+                        ondrop="drop(event)" 
+                        ondragover="allowDrop(event)" 
+                        ondragenter="dragEnter(3)">
                     </ul>
                 </div>
                 <!-- Add button group -->
