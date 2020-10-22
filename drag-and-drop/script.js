@@ -23,6 +23,7 @@ let listArrays = [];
 
 // Drag Functionality 
 let draggedItem;
+let dragging = false; 
 let currentColumn; 
 
 // Get Arrays from localStorage if available, set default values if not
@@ -81,10 +82,14 @@ function createItemEl(columnEl, column, item, index) {
 function updateItem(id, column) {
   const selectedArray = listArrays[column];
   const selectedColumnEl = listColumns[column].children;
-  if (!selectedColumnEl[id].textContent) {
-    delete selectedArray[id];
+  if (!dragging) {
+    if (!selectedColumnEl[id].textContent) {
+      delete selectedArray[id];
+    } else {
+      selectedArray[id] = selectedColumnEl[id].textContent;
+    }
+    updateDOM();
   }
-  updateDOM();
 }
 // Update Columns in DOM - Reset HTML, Filter Array, Update localStorage
 function updateDOM() {
@@ -146,27 +151,33 @@ function hideInputBox(column) {
 
 // Allows arrays to reflect Drag and drop items
 function rebuildArrays() {
-  backlogListArray = [];
-  for (let i = 0; i < backlogList.children.length; i++) {
-    backlogListArray.push(backlogList.children[i].textContent);
-  }
-  completeListArray = [];
-  for (let i = 0; i < progressList.children.length; i++) {
-    progressListArray.push(progressList.children[i].textContent);
-  }
-  completeListArray = [];
-  for (let i = 0; i < completeList.children.length; i++) {
-    completeListArray.push(completeList.children[i].textContent);
-  }
-  onHoldListArray = []; 
-  for (let i = 0; i < onHoldList.children.length; i++) {
-    onHoldListArray.push(onHoldList.children[i].textContent);
-  }
+  // optimize with map
+  backlogListArray = Array.from(backlogListEl.children).map(item => item.textContent); 
+  completeListArray = Array.from(completeListEl.children).map(item => item.textContent);
+  progressListArray = Array.from(progressListEl.children).map(item => item.textContent);
+  onHoldListArray = Array.from(onHoldListEl.children).map(item => item.textContent);
+  // backlogListArray = [];
+  // for (let i = 0; i < backlogList.children.length; i++) {
+  //   backlogListArray.push(backlogList.children[i].textContent);
+  // }
+  // completeListArray = [];
+  // for (let i = 0; i < progressList.children.length; i++) {
+  //   progressListArray.push(progressList.children[i].textContent);
+  // }
+  // completeListArray = [];
+  // for (let i = 0; i < completeList.children.length; i++) {
+  //   completeListArray.push(completeList.children[i].textContent);
+  // }
+  // onHoldListArray = []; 
+  // for (let i = 0; i < onHoldList.children.length; i++) {
+  //   onHoldListArray.push(onHoldList.children[i].textContent);
+  // }
   updateDOM();
 }
 // when Item starts dragging 
 function drag(evt) {
   draggedItem = evt.target; 
+  dragging = true;
 }
 
 // column allows for item to drop
@@ -189,6 +200,8 @@ function drop(evt) {
   // Add item to column
   const parent = listColumns[currentColumn];
   parent.appendChild(draggedItem); 
+  // Dragging complete
+  dragging = false;
   rebuildArrays(); 
 }
 // On Load
