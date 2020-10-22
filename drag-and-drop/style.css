@@ -215,6 +215,9 @@ ul {
   outline: none;
 }
 
+.drag-item:hover {
+  background-color: rgba(20, 82, 121, 0.536);
+}
 /* Media Query: Laptop */
 @media screen and (max-width: 1800px) {
   .main-title {

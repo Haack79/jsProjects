@@ -130,10 +130,10 @@ function updateDOM() {
 function addToColumn(column) {
   const itemText = addItems[column].textContent;
   if (itemText) {
-    const selectedArray = listArrays[column];
-    selectedArray.push(itemText);
-    addItems[column].textContent = '';
-    updateDOM(); 
+  const selectedArray = listArrays[column];
+  selectedArray.push(itemText);
+  addItems[column].textContent = '';
+  updateDOM(); 
   }
 }
 // Show add item input box
