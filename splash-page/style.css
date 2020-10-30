@@ -53,6 +53,13 @@ body {
   /* or 160% */
   color: #54575A;
 }
+.profile-img {
+  position: absolute;
+  height: 444px;
+  left: 737px;
+  right: 479px;
+  top: 686px;
+}
 .product-img {
   position: absolute;
   height: 222px;
