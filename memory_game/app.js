@@ -55,6 +55,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const grid = document.querySelector('.grid');
     const resultDisplay = document.querySelector('#result');
+    const triesDisplay = document.querySelector('#tries');
+    var tries = 0; 
     var cardsChosen = [];
     var cardsChosenId = [];
     var cardsWon = []; 
@@ -97,8 +99,10 @@ document.addEventListener('DOMContentLoaded', () => {
         var cardId = this.getAttribute('data-id');
         cardsChosen.push(cardArray[cardId].name);
         cardsChosenId.push(cardId);
-        this.setAttribute('src', cardArray[cardid].img)
+        this.setAttribute('src', cardArray[cardId].img)
         if (cardsChosen.length === 2) {
+            tries += 1; 
+            triesDisplay.textContent = tries; 
             setTimeout(checkForMatch, 500)
         }
     }
