@@ -29,6 +29,16 @@ body {
         url(../img/hero.jps);
     background-size: cover;
     background-position: top;
-    
+    position: relative;
     clip-path: polygon(0 0, 100% 50%, 100% 50%, 0 100%); 
+}
+.logo-box {
+    position: absolute;
+    top: 40px;
+    left: 40px;
+
+}
+
+.logo {
+    height: 35px;
 }
