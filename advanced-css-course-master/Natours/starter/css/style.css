@@ -30,7 +30,7 @@ body {
     background-size: cover;
     background-position: top;
     position: relative;
-    clip-path: polygon(0 0, 100% 50%, 100% 50%, 0 100%); 
+    clip-path: polygon(0 0, 50% 50%, 50% 50%, 0 10  0%); 
 }
 .logo-box {
     position: absolute;
@@ -47,6 +47,7 @@ body {
     color: #ffffff;
     text-transform: uppercase;
     backface-visibility: hidden;
+    margin-bottom: 60px;
 }
 
 .heading-primary-main {
@@ -88,5 +89,30 @@ body {
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%); 
-     /*this transform to get the whole text centered on page  */
+     /*this transform ^ to get the whole text centered on page  */
+    text-align: center; /* this will align text center */
+}
+
+.btn:link, 
+.btn:visited {
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px; 
+    display: inline-block; 
+    border-radius: 100px; 
+    transition: all .2s; 
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.8)
+}
+
+.btn:active {
+    transform: translateY(-1px); 
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.4)
+}
+.btn-white {
+    background-color: white;
+    color: #777; 
 }
