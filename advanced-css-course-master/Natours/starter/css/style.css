@@ -84,6 +84,18 @@ body {
     }
 }
 
+@keyframes moveInButton {
+    0% {
+        opacity: 0;
+        transform: translateY(30px); 
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
 .text-box {
     position: absolute;
     top: 40%;
@@ -101,6 +113,8 @@ body {
     display: inline-block; 
     border-radius: 100px; 
     transition: all .2s; 
+    /* set a position :relative for inner positioning */
+    position: relative;
 }
 
 .btn:hover {
@@ -115,4 +129,31 @@ body {
 .btn-white {
     background-color: white;
     color: #777; 
+}
+
+.btn::after {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    width: 100%;
+    border-radius: 100px;
+    position: absolute;
+    top: 0;
+    left: 0; 
+    z-index: -1;
+    transition: all .4s; 
+}
+
+.btn-white::after {
+    background-color: #fff;
+}
+
+.btn:hover::after {
+    transform: scaleX(1.4) scaleY(1.6); 
+    opacity: 0; 
+}
+
+.btn-animated {
+    animation: moveInButton .5s ease-out .75s;
+    animation-fill-mode: backwards;
 }
